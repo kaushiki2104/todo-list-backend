@@ -22,7 +22,7 @@ const connectDB = async () => {
   cached.conn = await cached.promise;
   return cached.conn;
 
-};
+
  // second 
   // if (isConnected) {
   //   console.log("MongoDB already connected");
@@ -57,8 +57,9 @@ const connectDB = async () => {
   //   process.exit(1);
   // }
 
-
+};
 module.exports = connectDB;
+
 
 
 

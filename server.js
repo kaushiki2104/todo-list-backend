@@ -72,17 +72,17 @@ app.use(morgan("dev"));
 app.use(cors());
 
 // ===== Routes =====
+
+
+app.use("/api/v1/todo", require("./routes/todoRoutes"));
+app.use("/api/v1/user", require("./routes/userRouters"));
+app.use("/api/v1/test", require("./routes/testRouters"));
 app.use("/", (req, res) => {
   res.status(200).json({
     success: true,
     message: "Server is working",
   });
 });
-
-app.use("/api/v1/todo", require("./routes/todoRoutes"));
-app.use("/api/v1/user", require("./routes/userRouters"));
-app.use("/api/v1/test", require("./routes/testRouters"));
-
 const PORT = process.env.PORT || 8000;
 
 // ===== Start Server AFTER Whitelist Update =====
@@ -104,3 +104,4 @@ checkAndUpdateIP()
       console.log(`Server running on port ${PORT}, DB may fail`.bgRed);
     });
   });
+

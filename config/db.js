@@ -15,16 +15,14 @@ const connectDB = async () => {
 
   if (!cached.promise) {
     cached.promise = mongoose
-      .connect(process.env.MONGO_URL_LOCAL, {
-        // no need for deprecated options
-      })
+      .connect(process.env.MONGO_URL_LOCAL)
       .then((conn) => conn);
   }
 
   cached.conn = await cached.promise;
   return cached.conn;
 
-
+};
  // second 
   // if (isConnected) {
   //   console.log("MongoDB already connected");
@@ -58,8 +56,9 @@ const connectDB = async () => {
   //   console.log(`MongoDB Error: ${error.message}`.bgRed.white);
   //   process.exit(1);
   // }
-};
+
 
 module.exports = connectDB;
+
 
 

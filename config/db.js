@@ -5,16 +5,22 @@ let cached = global.mongoose;
 
 if (!cached) {
   cached = global.mongoose = { conn: null, promise: null };
+}
+
 const connectDB = async () => {
 
-   if (cached.conn) {
+ if (cached.conn) {
     return cached.conn;
   }
+
   if (!cached.promise) {
-    cached.promise = mongoose.connect(process.env.MONGO_URL_LOCAL).then((conn) => {
-      return conn;
-    });
+    cached.promise = mongoose
+      .connect(process.env.MONGO_URL_LOCAL, {
+        // no need for deprecated options
+      })
+      .then((conn) => conn);
   }
+
   cached.conn = await cached.promise;
   return cached.conn;
 
@@ -55,4 +61,5 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
+
 

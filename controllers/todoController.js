@@ -3,16 +3,16 @@ const todoModel = require("../models/todoModel");
 // CREATE TODO
 const createTodoController = async (req, res) => {
   try {
-    const { title, description } = req.body;
+    const { title, description,category,dueDate } = req.body;
 
     // `createdBy` user ka id authMiddleware se lo
     const createdBy = req.user?.id;
-
+console.log('create ', req.body)
     // Validation
-    if (!title || !description) {
+    if (!title || !description || !category) {
       return res.status(400).json({
         success: false,
-        message: "Please provide title and description",
+        message: "Please provide title, description and category",
       });
     }
 
@@ -24,7 +24,7 @@ const createTodoController = async (req, res) => {
     }
 
     // Create new todo
-    const todo = new todoModel({ title, description, createdBy });
+    const todo = new todoModel({ title, description, createdBy, category,dueDate });
     const result = await todo.save();
 
     return res.status(201).json({

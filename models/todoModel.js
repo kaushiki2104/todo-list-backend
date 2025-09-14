@@ -19,6 +19,13 @@ const todoSchema = new mongoose.Schema(
       ref: 'User', 
       required: true,
     },
+    category: {
+    type: String,
+     enum: ["High", "Medium", "Low"],
+   default: "Low",
+    require:true
+  },
+   dueDate: { type: Date, required: false },
   },
   { timestamps: true }
 );

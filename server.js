@@ -77,7 +77,7 @@ app.use(cors());
 app.use("/api/v1/todo", require("./routes/todoRoutes"));
 app.use("/api/v1/user", require("./routes/userRouters"));
 app.use("/api/v1/test", require("./routes/testRouters"));
-app.use("/", (req, res) => {
+app.use("*", (req, res) => {
   res.status(200).json({
     success: true,
     message: "Server is working",
@@ -104,4 +104,5 @@ checkAndUpdateIP()
       console.log(`Server running on port ${PORT}, DB may fail`.bgRed);
     });
   });
+
 

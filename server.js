@@ -19,7 +19,12 @@ const app = express()
 app.use(express.json())
 app.use(morgan('dev'))
 app.use(cors())
-
+app.use('/', ( req, res)=>{
+  res.status(200).json({
+      success: true,
+      message: "Server is working",
+    });
+})
 //routes
 app.use("/api/v1/todo", require("./routes/todoRoutes"))
 app.use("/api/v1/user", require("./routes/userRouters"));

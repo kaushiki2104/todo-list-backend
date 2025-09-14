@@ -73,6 +73,14 @@ app.use(cors());
 
 // ===== Routes =====
 
+app.use((req, res, next) => {
+  console.log("👉 Incoming request:", req.method, req.originalUrl);
+  next();
+});
+app.post("/api/v1/user/login", (req, res) => {
+  console.log("🔥 Inline login hit!");
+  res.json({ success: true, message: "Inline login works!" });
+});
 
 app.use("/api/v1/todo", require("./routes/todoRoutes"));
 app.use("/api/v1/user", require("./routes/userRouters"));
@@ -104,5 +112,6 @@ checkAndUpdateIP()
       console.log(`Server running on port ${PORT}, DB may fail`.bgRed);
     });
   });
+
 
 
